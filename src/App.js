@@ -5,20 +5,24 @@ import { UserProvider } from './components/userContext'
 import API from './services/api'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import CreateTodo from './components/CreateTodo'
-
+import TodoPage from './components/TodoPage'
+// import NotFound from './components/NotFound'
 const initialState = {
   todoList: [],
   loading: true,
-  errors: ''
+  errors: '',
+  isTodosUpdated: false
 }
 
 const reducer = (state, action) => {
+  console.log("dispatch called")
   switch (action.type) {
     case ('FETCH_SUCCESS'):
       return {
         todoList: action.payload,
         loading: false,
-        errors: ''
+        errors: '',
+        isTodosUpdated: false
       }
     case ('FETCH_ERROR'):
       return {
@@ -48,22 +52,24 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
-        <Route exact path="/" render={
-          () => (
-            <React.Fragment>
-              <UserProvider value={state.todoList}>
+        <UserProvider value={{ vals: state, method: dispatch }}>
+          <Navbar />
+          <Route exact path="/" render={
+            () => (
+              <React.Fragment>
                 {
                   state.loading ?
                     'Please wait while we fetch data'
                     :
                     < MainView />
                 }
-              </UserProvider>
-            </React.Fragment>
-          )
-        } key={window.location.pathname} />
-        <Route path="/create" component={CreateTodo} />
+              </React.Fragment>
+            )
+          } key={window.location.pathname} />
+          <Route path="/create" component={CreateTodo} />
+          <Route path="/todo" component={TodoPage} />
+          {/* <Route component={NotFound} /> */}
+        </UserProvider>
       </div>
     </Router>
   )

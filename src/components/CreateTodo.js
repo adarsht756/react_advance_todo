@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import API from '../services/api'
 import BaseInput from './BaseInput'
 import BaseSelect from './BaseSelect'
-
+import { userContext } from './userContext'
 
 function CreateTodo() {
     const catValue = useRef(null)
@@ -10,6 +10,7 @@ function CreateTodo() {
     const descValue = useRef(null)
     const locationValue = useRef(null)
     const dateValue = useRef(null)
+    const consumerVals = useContext(userContext)
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -24,12 +25,13 @@ function CreateTodo() {
         }
 
         API.postEvent(event)
+            .then(consumerVals.vals.isTodosUpdated = true)
             .catch(e => {
                 console.log(e)
             })
     }
     return (
-        <div style={{ width: '800px', margin: 'auto', padding: '40px 0' }}>
+        <div style={{ width: '500px', margin: 'auto', padding: '40px 0' }}>
             <span className="text-5xl font-bold">Create an Event</span>
             <form onSubmit={submitForm}>
                 <div className="flex flex-col my-8">

@@ -54,11 +54,11 @@ textarea {
 }
 
 .selectBase {
-  @apply w-7/12 py-3 text-lg;
+  @apply py-3 text-lg;
 }
 
 .BaseInput {
-  @apply text-lg py-3 w-7/12 px-3;
+  @apply text-lg py-3  px-3;
 }
 
 .BaseInput::-moz-placeholder {
@@ -142,4 +142,13 @@ textarea {
 }
 .button.-icon-center {
   padding: 0 20px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
