@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { userContext } from './userContext'
 import Todo from './Todo'
 function MainView() {
@@ -10,7 +11,12 @@ function MainView() {
             <span className="mx-auto font-bold text-4xl ml-40">Events for Adarsh</span>
             {
                 consumerVals.vals.todoList.map((el) => {
-                    return <Todo key={el.id} item={el} />
+                    return <Link to={{
+                        pathname: "/todo", state: {
+                            event: el,
+                            passedProp: true
+                        }
+                    }} ><Todo key={el.id} item={el} /></Link>
                 })
             }
         </div>

@@ -1,4 +1,5 @@
 import React, { useRef, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import API from '../services/api'
 import BaseInput from './BaseInput'
 import BaseSelect from './BaseSelect'
@@ -11,10 +12,10 @@ function CreateTodo() {
     const locationValue = useRef(null)
     const dateValue = useRef(null)
     const consumerVals = useContext(userContext)
-
+    const history = useHistory();
     const submitForm = (e) => {
+
         e.preventDefault()
-        // console.log(catValue.current.value);
         const event = {
             category: catValue.current.value,
             date: dateValue.current.value,
@@ -29,6 +30,13 @@ function CreateTodo() {
             .catch(e => {
                 console.log(e)
             })
+        history.push({
+            pathname: '/todo',
+            state: {
+                event: event,
+                passedProp: true
+            }
+        })
     }
     return (
         <div style={{ width: '500px', margin: 'auto', padding: '40px 0' }}>

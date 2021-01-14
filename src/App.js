@@ -15,7 +15,6 @@ const initialState = {
 }
 
 const reducer = (state, action) => {
-  console.log("dispatch called")
   switch (action.type) {
     case ('FETCH_SUCCESS'):
       return {
