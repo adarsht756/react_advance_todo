@@ -12,7 +12,7 @@ function MainView() {
             {
                 consumerVals.vals.todoList.map((el) => {
                     return <Link to={{
-                        pathname: "/todo", state: {
+                        pathname: `/todo/${el.id}`, state: {
                             event: el,
                             passedProp: true
                         }

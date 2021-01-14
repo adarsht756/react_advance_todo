@@ -1,4 +1,3 @@
-import React, { } from 'react'
 import axios from 'axios'
 
 const apiClient = axios.create({
@@ -11,6 +10,7 @@ const apiClient = axios.create({
     timeout: 10000
 })
 
+// eslint-disable-next-line
 export default {
     // getEvents(perPage, page) {
     getEvents() {

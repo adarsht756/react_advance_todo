@@ -3,10 +3,10 @@ import MainView from './components/MainView'
 import Navbar from './components/Navbar'
 import { UserProvider } from './components/userContext'
 import API from './services/api'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import CreateTodo from './components/CreateTodo'
 import TodoPage from './components/TodoPage'
-// import NotFound from './components/NotFound'
+import NotFound from './components/NotFound'
 const initialState = {
   todoList: [],
   loading: true,
@@ -53,21 +53,24 @@ function App() {
       <div>
         <UserProvider value={{ vals: state, method: dispatch }}>
           <Navbar />
-          <Route exact path="/" render={
-            () => (
-              <React.Fragment>
-                {
-                  state.loading ?
-                    'Please wait while we fetch data'
-                    :
-                    < MainView />
-                }
-              </React.Fragment>
-            )
-          } key={window.location.pathname} />
-          <Route path="/create" component={CreateTodo} />
-          <Route path="/todo" component={TodoPage} />
-          {/* <Route component={NotFound} /> */}
+          <Switch>
+
+            <Route exact path="/" render={
+              () => (
+                <React.Fragment>
+                  {
+                    state.loading ?
+                      'Please wait while we fetch data'
+                      :
+                      < MainView />
+                  }
+                </React.Fragment>
+              )
+            } key={window.location.pathname} />
+            <Route exact path="/create" component={CreateTodo} />
+            <Route exact path="/todo/:id" component={TodoPage} />
+            <Route exact path="*" component={NotFound} />
+          </Switch>
         </UserProvider>
       </div>
     </Router>

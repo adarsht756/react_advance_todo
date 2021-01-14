@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+//import { useLocation } from 'react-router-dom'
+import api from '../services/api';
 
-function TodoPage({ event }) {
+const TodoPage = ({ match: { params: { id } } }) => {
 
-    const location = useLocation().state;
+    //const location = useLocation().state;
     const [todo, setTodo] = useState({})
     useEffect(() => {
-        setTodo(location.event)
-        // console.log(location.passedProp, location.event)
-        // location.passedProp ? setTodo(location.event) : setTodo(event)
-        // location.passedProp = false
+        api.getEvent(id)
+            .then(res => setTodo(res.data))
+            .catch(e => console.log(e))
     }, [])
 
     return (
