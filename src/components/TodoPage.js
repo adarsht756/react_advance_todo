@@ -25,7 +25,7 @@ const TodoPage = ({ match: { params: { id } } }) => {
 
     return (
         isLoading ? "" :
-            <div>
+            <div className="page">
                 <div className="w-7/12 mx-auto border shadow hover:shadow-xl transition-all duration-500 my-8 px-10 py-6 text-xl">
                     <span>@{todo.time ? todo.time : ""} </span>
                     <span className="text-gray-500">On {todo.date}</span> <br />

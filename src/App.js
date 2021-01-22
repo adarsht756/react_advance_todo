@@ -65,9 +65,7 @@ function App() {
                     state.loading ?
                       <Loader />
                       :
-                      <ErrorBoundary>
-                        < MainView />
-                      </ErrorBoundary>
+                      < MainView />
                   }
                 </React.Fragment>
               )
