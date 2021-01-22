@@ -31,7 +31,7 @@ function CreateTodo() {
                 console.log(e)
             })
         history.push({
-            pathname: '/todo',
+            pathname: `/todo/${event.id}`,
             state: {
                 event: event,
                 passedProp: true

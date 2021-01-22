@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './assets/css/styles.css'
+import './assets/css/nprogress.css'
 // import createRoutes from './router/routes'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 // const routes = createRoutes();
 
 ReactDOM.render(

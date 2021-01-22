@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react'
 import MainView from './components/MainView'
+import ErrorBoundary from './components/ErrorBoundary'
 import Navbar from './components/Navbar'
 import { UserProvider } from './components/userContext'
 import API from './services/api'
@@ -7,6 +8,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import CreateTodo from './components/CreateTodo'
 import TodoPage from './components/TodoPage'
 import NotFound from './components/NotFound'
+import Loader from './components/Loader'
+
 const initialState = {
   todoList: [],
   loading: true,
@@ -37,6 +40,7 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+
   useEffect(() => {
     console.log("parent")
     API.getEvents()
@@ -54,21 +58,24 @@ function App() {
         <UserProvider value={{ vals: state, method: dispatch }}>
           <Navbar />
           <Switch>
-
             <Route exact path="/" render={
               () => (
                 <React.Fragment>
                   {
                     state.loading ?
-                      'Please wait while we fetch data'
+                      <Loader />
                       :
-                      < MainView />
+                      <ErrorBoundary>
+                        < MainView />
+                      </ErrorBoundary>
                   }
                 </React.Fragment>
               )
             } key={window.location.pathname} />
             <Route exact path="/create" component={CreateTodo} />
+            {/* <ErrorBoundary> */}
             <Route exact path="/todo/:id" component={TodoPage} />
+            {/* </ErrorBoundary> */}
             <Route exact path="*" component={NotFound} />
           </Switch>
         </UserProvider>
