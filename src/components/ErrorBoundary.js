@@ -10,7 +10,8 @@ class ErrorBoundary extends Component {
         }
     }
 
-    static getDerivedSateFromError(error) {
+    static getDerivedStateFromError(error) {
+        console.log("xxxx" + error)
         return {
             hasError: true
         }
@@ -18,13 +19,9 @@ class ErrorBoundary extends Component {
 
     render() {
         if (this.state.hasError) {
-            console.log("asd")
-            return <h1>Something went wrong</h1>
+            return <h1>Something went wrong ErrorBoundary</h1>
         }
-        else {
-            console.log("asd")
-            return this.props.children
-        }
+        return this.props.children
     }
 }
 

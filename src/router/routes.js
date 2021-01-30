@@ -1,12 +1,12 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
-import MainView from '../components/MainView';
-import CreateTodo from '../components/CreateTodo';
-import TodoPage from '../components/TodoPage';
-
-import React from "react";
 import { Route, withRouter } from "react-router-dom";
 import { AnimatedSwitch } from "../services/AnimatedSwitch";
+
+const MainView = React.lazy(() => import('../components/MainView'));
+const CreateTodo = React.lazy(() => import('../components/CreateTodo'));
+const TodoPage = React.lazy(() => import('../components/TodoPage'));
+const NotFound = React.lazy(() => import('../components/NotFound'))
+
 
 /**
  * The ".page" class is key to animating a full page and not receive bumps while
@@ -15,8 +15,7 @@ import { AnimatedSwitch } from "../services/AnimatedSwitch";
  *
  * Try to remove .page to see the effect.
  */
-
-const routes = [
+export const routes = [
     {
         component: MainView,
         path: "/"
@@ -28,6 +27,10 @@ const routes = [
     {
         component: TodoPage,
         path: "/todo/:id"
+    },
+    {
+        component: NotFound,
+        path: "*"
     }
 ];
 

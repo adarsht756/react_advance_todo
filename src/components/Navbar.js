@@ -8,7 +8,7 @@ function Navbar() {
 
     const checkTodoStatus = () => {
         console.log(payload.vals.isTodosUpdated)
-        if (payload.vals.isTodosUpdated) {
+        if (typeof payload.vals.isTodosUpdated !== "undefined") {
             api.getEvents()
                 .then(res => {
                     payload.method({ type: 'FETCH_SUCCESS', payload: res.data })

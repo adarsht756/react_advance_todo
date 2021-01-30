@@ -5,7 +5,7 @@ import BaseInput from './BaseInput'
 import BaseSelect from './BaseSelect'
 import { userContext } from './userContext'
 
-function CreateTodo() {
+function CreateTodo(props) {
     const catValue = useRef(null)
     const titleValue = useRef(null)
     const descValue = useRef(null)
@@ -38,6 +38,7 @@ function CreateTodo() {
             }
         })
     }
+
     return (
         <div className="page">
             <div style={{ width: '500px', margin: 'auto', padding: '40px 0' }} >

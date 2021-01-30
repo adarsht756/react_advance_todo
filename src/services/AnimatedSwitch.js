@@ -4,6 +4,7 @@ import posed, { PoseGroup } from 'react-pose'
 import '../assets/css/styles.css'
 import '../assets/css/nprogress.css'
 import '../index.css'
+import ErrorBoundary from '../components/ErrorBoundary';
 
 /**
  * This component is used to control the routing animation.
@@ -25,9 +26,11 @@ export const AnimatedSwitch = ({ history, location, children, ...rest }) => {
             exitPose={reverse ? "rightSide" : "leftSide"}
         >
             <ContextRouteAnimation key={location.pathname} reverse={reverse}>
-                <Switch location={location} {...rest}>
-                    {children}
-                </Switch>
+                <ErrorBoundary>
+                    <Switch location={location} {...rest}>
+                        {children}
+                    </Switch>
+                </ErrorBoundary>
             </ContextRouteAnimation>
         </PoseGroup>
     );
@@ -40,17 +43,17 @@ export const AnimatedSwitch = ({ history, location, children, ...rest }) => {
 export const ContextRouteAnimation = posed.div({
     enter: {
         x: 0,
-        // opacity: 1,
+        opacity: 1,
         // scale: 1,
         transition: {
             type: "tween",
             ease: "easeInOut",
-            duration: 400
+            duration: 1000
         }
     },
     leftSide: {
-        x: "-100%",
-        // opacity: 0,
+        // x: "-100%",
+        opacity: 0,
         // scale: 1.5,
         transition: {
             type: "tween",
@@ -59,10 +62,19 @@ export const ContextRouteAnimation = posed.div({
         }
     },
     rightSide: {
-        x: "100%",
-        // opacity: 0,
+        // x: "100%",
+        opacity: 0,
         // scale: 1.5,
         transition: {
+            type: "tween",
+            ease: "easeInOut",
+            duration: 400
+        }
+    },
+    leave: {
+        x: "-100%",
+        position: "absolute",
+        zIndex: -1, transition: {
             type: "tween",
             ease: "easeInOut",
             duration: 400

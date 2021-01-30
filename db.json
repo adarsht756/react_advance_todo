@@ -253,47 +253,14 @@
     },
     {
       "category": "sustainability",
-      "date": "2021-02-03",
-      "title": "dsad",
-      "description": "asdasd",
-      "location": "asda",
+      "date": "",
+      "title": "",
+      "description": "",
+      "location": "",
       "attendees": [
         "Asd"
       ],
       "id": 9423143
-    },
-    {
-      "category": "sustainability",
-      "date": "2021-01-29",
-      "title": "gxf",
-      "description": "xgn",
-      "location": "xng",
-      "attendees": [
-        "Asd"
-      ],
-      "id": 9423144
-    },
-    {
-      "category": "education",
-      "date": "2021-01-20",
-      "title": "Vidushi Study",
-      "description": "Vidushi do maths",
-      "location": "Rishikesh",
-      "attendees": [
-        "Asd"
-      ],
-      "id": 9423145
-    },
-    {
-      "category": "sustainability",
-      "date": "2021-01-26",
-      "title": "sdf",
-      "description": "dsfdsf",
-      "location": "dfasf",
-      "attendees": [
-        "Asd"
-      ],
-      "id": 9423146
     }
   ]
 }
